@@ -1,4 +1,5 @@
 void main() {
+  String divider = "-----------x------------------------------------------------x-------------";
   // Task 1
   int Length = 45;
   int Breath = 78;
@@ -8,7 +9,7 @@ void main() {
   else {
     print("Rectangle");
   }
-
+ print(divider);
   //Task 2
   int age_ali = 25;
   int age_hassan = 18;
@@ -22,7 +23,7 @@ void main() {
   else {
     print("Both have the same age");
   }
-
+print(divider);
   //Task 3
   int Number_of_classes_held = 16;
   int Number_of_classes_attended = 10;
@@ -35,7 +36,7 @@ void main() {
   else{
     print("Your attendance is $Attendance% you are  not allowed to  sit in exam");
   }
-
+print(divider);
   //Task 4
   int year = 1999;
 
@@ -48,7 +49,7 @@ void main() {
   else {
     print("$year is not a leap year");
   }
-
+print(divider);
   //Task 5
   int temp = 42;
 
@@ -67,7 +68,7 @@ void main() {
   else{
     print("Its freezing");
   }
-
+print(divider);
 
 //Task 6
 String alphabet = "c" ;
@@ -78,7 +79,7 @@ if(alphabet == "a" || alphabet == "e" || alphabet == "i" || alphabet == "o" || a
 else{
   print("$alphabet is consonant");
 }
-
+print(divider);
 //task 7
 
   int id = 1001;
@@ -101,5 +102,57 @@ else{
   else {
     print("Net Bill amount : ${units*2.00}");
   }
+print(divider);
+//Task 8
+  List<String> names = ["Ali", "Ahmed", "Usman","Hassan"];
+  print(names[0]);
+  print(names[1]);
+  print(names[2]);
+  print(names[3]);
+print(divider);
+//Task 9
+  List<String> days = [];
+  days.add("Monday");
+  days.add("Tuesday");
+  days.add("Wednesday");
+  days.add("Thursday");
+  days.add("Friday");
+  days.add("Saturday");
+  days.add("Sunday");
+  print(days);
+print(divider);
 
+  //Task 10
+  days.removeLast();
+  print(days);
+
+  days.removeLast();
+  print(days);
+
+  days.removeLast();
+  print(days);
+
+  days.removeLast();
+  print(days);
+
+  days.removeLast();
+  print(days);
+
+  days.removeLast();
+  print(days);
+
+  days.removeLast();
+  print(days);
+print(divider);
+
+//Task 11
+ List<int> numbers = [45,67,54,56,7,18,10,98,32,90,52,49,27,21];
+numbers.sort();
+
+print("Greatest number : ${numbers.last}");
+print("Smallest number : ${numbers.first}");
+print(divider);
+
+//Task 12
+print("Maximum value: ${numbers.last}");
 }
