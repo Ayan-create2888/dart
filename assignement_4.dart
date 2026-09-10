@@ -42,13 +42,17 @@ void main() {
 
     if (user_choice == 1) {
       print("You selected Home");
-    } else if (user_choice == 2) {
+    } 
+    else if (user_choice == 2) {
       print("You selected About");
-    } else if (user_choice == 3) {
+    } 
+    else if (user_choice == 3) {
       print("You selected Contact");
-    } else if (user_choice == 4) {
+    }
+    else if (user_choice == 4) {
       print("Exit");
-    } else {
+    } 
+    else {
       print("Invalid choice");
     }
   } while (user_choice != 4);
