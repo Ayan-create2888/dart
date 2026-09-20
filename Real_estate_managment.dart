@@ -312,21 +312,21 @@ List<Map<String, dynamic>> properties = [
 ];
 
 void main() {
-  print("==============================================");
+  print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
   print("       REAL ESTATE MANAGEMENT SYSTEM");
-  print("==============================================");
+  print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
   registerCustomer();
 
   while (true) {
-    print("\n========== MAIN MENU ==========");
+    print("\n------------- MAIN MENU -------------");
     print("1. View All Properties");
     print("2. Buy Property");
     print("3. Rent Property");
     print("4. Sell Property");
     print("5. Customer Information");
     print("6. Exit");
-    print("===============================");
+    print("---------------------------------------");
 
     stdout.write("Enter your choice: ");
     int choice = int.parse(stdin.readLineSync()!);
@@ -357,7 +357,7 @@ void main() {
 }
 
 void registerCustomer() {
-  print("\n========== CUSTOMER REGISTRATION ==========");
+  print("\n----------- CUSTOMER REGISTRATION --------------");
 
   stdout.write("Customer Name: ");
   customer["name"] = stdin.readLineSync()!;
@@ -378,7 +378,7 @@ void registerCustomer() {
 }
 
 void showCustomer() {
-  print("\n========== CUSTOMER INFORMATION ==========");
+  print("\n----------- CUSTOMER INFORMATION -----------");
 
   print("Name: ${customer["name"]}");
   print("Father Name: ${customer["fatherName"]}");
@@ -388,7 +388,12 @@ void showCustomer() {
 }
 
 void showAllProperties() {
-  print("\n================ ALL PROPERTIES ================");
+  print("\n----------- ALL PROPERTIES -----------");
+
+  if (properties.isEmpty) {
+    print("No properties are available.");
+    return;
+  }
 
   for (var property in properties) {
     print("-----------------------------------------------");
@@ -425,7 +430,7 @@ Map<String, dynamic>? searchProperty(String transactionType) {
 
   if (societyChoice == 1) {
     society = "Bahria Town";
-  } 
+  }
   else if (societyChoice == 2) {
     society = "DHA";
   } 
@@ -605,6 +610,7 @@ void buyProperty() {
   print("\nSelected Property");
   print("ID: ${property["id"]}");
   print("Society: ${property["society"]}");
+  print("Project: ${property["project"]}");
   print("Type: ${property["type"]}");
   print("Size: ${property["size"]} Sq.Ft");
   print("Price: Rs. $propertyPrice");
@@ -650,7 +656,13 @@ void fullPayment(Map<String, dynamic> property) {
   String payment = stdin.readLineSync()!;
 
   if (payment.toLowerCase() == "yes") {
+
+    properties.remove(property);
+
     property["status"] = "Sold";
+
+    print("\nProperty successfully sold.");
+    print("Property has been removed from available properties.");
 
     generateBill(
       property,
@@ -666,7 +678,8 @@ void fullPayment(Map<String, dynamic> property) {
       0,
       0
     );
-  } else {
+  } 
+  else {
     print("Transaction cancelled.");
   }
 }
@@ -756,7 +769,13 @@ void installmentPayment(Map<String, dynamic> property) {
   String confirm = stdin.readLineSync()!;
 
   if (confirm.toLowerCase() == "yes") {
+
+    properties.remove(property);
+
     property["status"] = "Sold";
+
+    print("\nProperty successfully sold.");
+    print("Property has been removed from available properties.");
 
     generateBill(
       property,
@@ -794,6 +813,7 @@ void rentProperty() {
   print("\nSelected Property");
   print("ID: ${property["id"]}");
   print("Society: ${property["society"]}");
+  print("Project: ${property["project"]}");
   print("Type: ${property["type"]}");
   print("Size: ${property["size"]} Sq.Ft");
   print("Monthly Rent: Rs. $monthlyRent");
@@ -822,7 +842,13 @@ void rentProperty() {
   String confirm = stdin.readLineSync()!;
 
   if (confirm.toLowerCase() == "yes") {
+
+    properties.remove(property);
+
     property["status"] = "Rented";
+
+    print("\nProperty successfully rented.");
+    print("Property has been removed from available properties.");
 
     generateBill(
       property,
@@ -878,10 +904,10 @@ void sellProperty() {
   } 
   else if (typeChoice == 2) {
     type = "Flat";
-  }
-   else if (typeChoice == 3) {
+  } 
+  else if (typeChoice == 3) {
     type = "Portion";
-  }
+  } 
   else {
     print("Invalid choice.");
     return;
@@ -956,7 +982,28 @@ void sellProperty() {
   String confirm = stdin.readLineSync()!;
 
   if (confirm.toLowerCase() == "yes") {
+
+    int newId = 1;
+
+    for (var property in properties) {
+      if (property["id"] >= newId) {
+        newId = property["id"] + 1;
+      }
+    }
+
+    properties.add({
+      "id": newId,
+      "society": location,
+      "project": location,
+      "type": type,
+      "size": size,
+      "price": sellingPrice,
+      "rent": 0.0,
+      "status": "Available"
+    });
+
     print("\nProperty successfully added for sale.");
+    print("New Property ID: $newId");
 
     print("\n========== SELL RECORD ==========");
     print("Owner: $ownerName");
@@ -969,8 +1016,7 @@ void sellProperty() {
     print("Commission: Rs. $commission");
     print("Paperwork: Rs. $paperwork");
     print("Final Amount: Rs. $finalAmount");
-  } 
-  else {
+  } else {
     print("Selling transaction cancelled.");
   }
 }
@@ -1043,4 +1089,3 @@ void generateBill(
   print("                 THANK YOU");
   print("================================================");
 }
-
